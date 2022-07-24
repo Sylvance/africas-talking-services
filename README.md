@@ -23,16 +23,16 @@ Create your Africa's Talking Service with;
 Initialize the voice service first;
 
 ```ruby
-service = Africas::Talking::Services.new(app_name: app_name, app_key: app_key)
+service = Africas::Talking::Services::Client.new(app_name: app_name, app_key: app_key)
 voice = service.voice
 ```
 
 #### -> making a voice call
 
 ```ruby
-call_entity = Africas::Talking::Services::CallEntity.new(from: from, to: to, client_request_id: client_request_id)
+voice_call_entity = Africas::Talking::Services::VoiceCallEntity.new(from: from, to: to, client_request_id: client_request_id)
 
-response = voice.call(entity: call_entity)
+response = voice.call(entity: voice_call_entity)
 response.success? # => true
 ```
 
@@ -51,26 +51,29 @@ callback_entity = Africas::Talking::Services::CallbackEntity.new(callback_respon
 
 - ii) Return a response based on the voice methods
 ```ruby
-# you can inform the user of something
-response = voice.say(text: 'Something', voice: 'en-GB-Standard-F', play_beep: true)
+# you can inform the user of something [https://cloud.google.com/text-to-speech/docs/voices]
+voice_say_entity = Africas::Talking::Services::VoiceSayEntity.new(text: 'Something', voice: 'en-GB-Standard-F', play_beep: true)
+response = voice.say(entity: voice_say_entity)
 
 # or
 # you can play a pre-recorded audio from a url
-response = voice.play(audio_url: 'http://www.myvoicemailserver.com/audio/vmail.wav')
+voice_play_entity = Africas::Talking::Services::VoicePlayEntity.new(audio_url: 'http://www.myvoicemailserver.com/audio/vmail.wav')
+response = voice.play(entity: voice_play_entity)
 
 # or
 # you can prompt user for digits
-response = voice.get_digits(
+voice_get_digits_entity = Africas::Talking::Services::VoiceGetDigitsEntity.new(
   prompt: 'Enter your account number.',
   timed_out_notification: 'We failed to get your account number.',
   timeout: '30',
   finish_on_key: '#',
   callback_url: 'http://mycallbackURL.com'
 )
+response = voice.get_digits(entity: voice_get_digits_entity)
 
 # or
 # you can forward the call to an external number
-response = voice.forward_call(
+voice_forward_call_entity = Africas::Talking::Services::VoiceForwardCallEntity.new(
   phone_numbers: '+254711XXXYYY,+25631XYYZZZZ,test@ke.sip.africastalking.com',
   ringback_tone: 'http://mymediafile.com/playme.mp3',
   record: true,
@@ -78,43 +81,49 @@ response = voice.forward_call(
   caller_id: '+254711XXXYYY',
   sequential: true
 )
+response = voice.forward_call(entity: voice_forward_call_entity)
 
 # or
 # prompt a user for an answer and record the audio
-response = voice.record(
+voice_record_entity = Africas::Talking::Services::VoiceRecordEntity.new(
   prompt: 'Please tell us your name after the beep.',
   finish_on_key: '#',
   maxLength: '10',
   trim_silence: true,
   play_beep: true
 )
+response = voice.record(entity: voice_record_entity)
 
 # or
 # prompt a user to record the audio and only ends when they cut the phone
-response = voice.terminal_record(
+voice_terminal_record_entity = Africas::Talking::Services::VoiceTerminalRecordEntity.new(
   prompt: 'Please leave a message after the beep.',
   play_beep: true
 )
+response = voice.terminal_record(entity: voice_terminal_record_entity)
 
 # or
 # pass an incoming call to a queue to be handled later.
-response = voice.enqueue(
+voice_enqueue_entity = Africas::Talking::Services::VoiceEnqueueEntity.new(
   queue_name: 'test',
   hold_music: 'http://www.mymediaserver.com/audio/callWaiting.wav'
 )
+response = voice.enqueue(entity: voice_enqueue_entity)
 
 # or
 # pass the call enqueued to a separate number so that it can be handled e.g by an agent.
-response = voice.dequeue(
+voice_dequeue_entity = Africas::Talking::Services::VoiceDequeueEntity.new(
   queue_name: 'test',
   phone_number: '+254711082XXX'
 )
+response = voice.dequeue(entity: voice_dequeue_entity)
 
 # or
 # transfer control of the call to the script whose URL is passed in.
-response = voice.redirect(
+voice_redirect_entity = Africas::Talking::Services::VoiceRedirectEntity.new(
   handler_url: 'http://www.myotherhandler.com/process.php'
 )
+response = voice.redirect(entity: voice_redirect_entity)
 
 # or
 # reject incoming call without incurring any costs.
