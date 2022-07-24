@@ -18,7 +18,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 Create your Africa's Talking Service with;
 
-### Voice Service Example
+### Voice Service Usage
 
 Initialize the voice service first;
 
