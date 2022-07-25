@@ -10,9 +10,10 @@ module Africas
 
       class Client
         attr_accessor :app_name, :app_key
+
         def initialize(app_name:, app_key:)
           @app_name = app_name
-          @app_key  = app_key 
+          @app_key  = app_key
         end
 
         def voice
@@ -22,10 +23,11 @@ module Africas
 
       class VoiceCallEntity
         attr_accessor :from, :to, :client_request_id
+
         def initialize(from:, to:, client_request_id:)
           @from              = from
           @to                = to
-          @client_request_id =  client_request_id
+          @client_request_id = client_request_id
         end
 
         def to_body
@@ -39,6 +41,7 @@ module Africas
 
       class VoiceSayEntity
         attr_accessor :text, :voice, :play_beep
+
         def initialize(text:, voice:, play_beep:)
           @text      = text
           @voice     = voice
@@ -56,6 +59,7 @@ module Africas
 
       class VoicePlayEntity
         attr_accessor :audio_url
+
         def initialize(audio_url:)
           @audio_url = audio_url
         end
@@ -69,6 +73,7 @@ module Africas
 
       class VoiceGetDigitsEntity
         attr_accessor :prompt
+
         def initialize(prompt:, timed_out_notification:, timeout:, finish_on_key:, callback_url:)
           @prompt                 = prompt
           @timed_out_notification = timed_out_notification
@@ -90,6 +95,7 @@ module Africas
 
       class VoiceForwardCallEntity
         attr_accessor :phone_numbers, :ringback_tone, :record, :max_duration, :caller_id, :sequential
+
         def initialize(phone_numbers:, ringback_tone:, record:, max_duration:, caller_id:, sequential:)
           @phone_numbers = phone_numbers
           @ringback_tone = ringback_tone
@@ -113,6 +119,7 @@ module Africas
 
       class VoiceRecordEntity
         attr_accessor :prompt, :finish_on_key, :maxLength, :trim_silence, :play_beep
+
         def initialize(prompt:, finish_on_key:, maxLength:, trim_silence:, play_beep:)
           @prompt        = prompt
           @finish_on_key = finish_on_key
@@ -134,6 +141,7 @@ module Africas
 
       class VoiceTerminalRecordEntity
         attr_accessor :prompt, :play_beep
+
         def initialize(prompt:, play_beep:)
           @prompt    = prompt
           @play_beep = play_beep
@@ -149,6 +157,7 @@ module Africas
 
       class VoiceEnqueueEntity
         attr_accessor :queue_name, :hold_music
+
         def initialize(queue_name:, hold_music:)
           @queue_name = queue_name
           @hold_music = hold_music
@@ -164,6 +173,7 @@ module Africas
 
       class VoiceDequeueEntity
         attr_accessor :queue_name, :phone_number
+
         def initialize(queue_name:, phone_number:)
           @queue_name = queue_name
           @phone_number = phone_number
@@ -179,6 +189,7 @@ module Africas
 
       class VoiceRedirectEntity
         attr_accessor :handler_url
+
         def initialize(handler_url:)
           @handler_url = handler_url
         end
@@ -192,48 +203,49 @@ module Africas
 
       class CallbackEntity
         attr_accessor :callback_response
+
         def initialize(callback_response:)
-          @callback_response =  callback_response
+          @callback_response = callback_response
         end
 
         def is_active
-          response['is_active']
+          response["is_active"]
         end
 
         def session_id
-          response['session_id']
+          response["session_id"]
         end
 
         def direction
-          response['direction']
+          response["direction"]
         end
 
         def caller_number
-          response['caller_number']
+          response["caller_number"]
         end
 
         def destination_number
-          response['destination_number']
+          response["destination_number"]
         end
 
         def get_digits_response
-          response['get_digits_response']
+          response["get_digits_response"]
         end
 
         def recording_url
-          response['recording_url']
+          response["recording_url"]
         end
 
         def duration_in_seconds
-          response['duration_in_seconds']
+          response["duration_in_seconds"]
         end
 
         def currency_code
-          response['currency_code']
+          response["currency_code"]
         end
 
         def amount
-          response['amount']
+          response["amount"]
         end
 
         private
