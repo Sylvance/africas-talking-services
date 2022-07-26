@@ -130,10 +130,14 @@ response = voice.redirect(entity: voice_redirect_entity)
 response = voice.reject
 
 # then return the response back to AT
+# if using rails
+respond_to do |format|
+  format.json { ... }
+  format.xml { render xml: response }
+end
+# or just
 return response
 ```
-
-
 
 #### -> call transfer
 

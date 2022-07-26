@@ -9,6 +9,7 @@ GEM
     ast (2.4.2)
     diff-lcs (1.5.0)
     json (2.6.2)
+    ox (2.14.11)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -51,6 +52,7 @@ PLATFORMS
 
 DEPENDENCIES
   africas-talking-services!
+  ox
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.21)

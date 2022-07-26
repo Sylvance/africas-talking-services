@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ox'
+
 module Africas
   module Talking
     module Services
@@ -12,47 +14,82 @@ module Africas
         end
 
         def call(entity:)
-          "Voice call"
+          CreateXML.new(:Call, "Voice call", entity.to_body)
         end
 
         def say(entity:)
-          "Voice say"
+          CreateXML.new(:Say, "Voice say", entity.to_body)
         end
 
         def play(entity:)
-          "Voice play"
+          CreateXML.new(:Play, "Voice play", entity.to_body)
         end
 
         def get_digits(entity:)
-          "Voice get_digits"
+          CreateXML.new(:GetDigits, "Voice get_digits", entity.to_body)
         end
 
         def forward_call(entity:)
-          "Voice forward_call"
+          CreateXML.new(:Dial, "Voice forward_call", entity.to_body)
         end
 
         def record(entity:)
-          "Voice record"
+          CreateXML.new(:Record, "Voice record", entity.to_body)
         end
 
         def terminal_record(entity:)
-          "Voice terminal_record"
+          CreateXML.new(:Record, "Voice terminal_record", entity.to_body)
         end
 
         def enqueue(entity:)
-          "Voice enqueue"
+          CreateXML.new(:Enqueue, "Voice enqueue", entity.to_body)
         end
 
         def dequeue(entity:)
-          "Voice dequeue"
+          CreateXML.new(:Dequeue, "Voice dequeue", entity.to_body)
         end
 
         def redirect(entity:)
-          "Voice redirect"
+          CreateXML.new(:Redirect, "Voice redirect", entity.to_body)
         end
 
         def reject
-          "Voice reject"
+          CreateXML.new(:Reject, nil, nil)
+        end
+
+        private
+
+        class CreateXML
+          attr_accessor :element, :content, :params
+
+          def initialize(element, content, params)
+            @element = element
+            @content = content
+            @params  = params
+          end
+
+          def result
+            doc = Ox::Document.new
+
+            instruct = Ox::Instruct.new(:xml)
+            instruct[:version] = '1.0'
+            instruct[:encoding] = 'UTF-8'
+            instruct[:standalone] = 'yes'
+
+            doc << instruct
+
+            ox_element = Ox::Element.new(@element)
+
+            params.each do |key, value|
+              ox_element[key] = value
+            end
+
+            ox_element << content
+            doc << ox_element
+
+            xml = Ox.dump(doc)
+            return xml
+          end
         end
       end
     end
