@@ -21,7 +21,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice call to call AT api" do
-        expect(voice.call(entity: entity)).to eq("Voice call")
+        expect(voice.call(entity: entity).content).to eq("Voice call")
       end
     end
 
@@ -33,7 +33,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice say to call AT api" do
-        expect(voice.say(entity: entity)).to eq("Voice say")
+        expect(voice.say(entity: entity).content).to eq("Voice say")
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice play to call AT api" do
-        expect(voice.play(entity: entity)).to eq("Voice play")
+        expect(voice.play(entity: entity).content).to eq("Voice play")
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice get_digits call to AT api" do
-        expect(voice.get_digits(entity: entity)).to eq("Voice get_digits")
+        expect(voice.get_digits(entity: entity).content).to eq("Voice get_digits")
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice forward_call to call AT api" do
-        expect(voice.forward_call(entity: entity)).to eq("Voice forward_call")
+        expect(voice.forward_call(entity: entity).content).to eq("Voice forward_call")
       end
     end
 
@@ -94,7 +94,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice record call to AT api" do
-        expect(voice.record(entity: entity)).to eq("Voice record")
+        expect(voice.record(entity: entity).content).to eq("Voice record")
       end
     end
 
@@ -107,7 +107,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice terminal_record to call AT api" do
-        expect(voice.terminal_record(entity: entity)).to eq("Voice terminal_record")
+        expect(voice.terminal_record(entity: entity).content).to eq("Voice terminal_record")
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice enqueue to call AT api" do
-        expect(voice.enqueue(entity: entity)).to eq("Voice enqueue")
+        expect(voice.enqueue(entity: entity).content).to eq("Voice enqueue")
       end
     end
 
@@ -133,7 +133,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice dequeue call to AT api" do
-        expect(voice.dequeue(entity: entity)).to eq("Voice dequeue")
+        expect(voice.dequeue(entity: entity).content).to eq("Voice dequeue")
       end
     end
 
@@ -145,7 +145,7 @@ RSpec.describe Africas::Talking::Services do
       end
 
       it "can create a voice redirect to call AT api" do
-        expect(voice.redirect(entity: entity)).to eq("Voice redirect")
+        expect(voice.redirect(entity: entity).content).to eq("Voice redirect")
       end
     end
 
