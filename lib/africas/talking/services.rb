@@ -118,12 +118,12 @@ module Africas
       end
 
       class VoiceRecordEntity
-        attr_accessor :prompt, :finish_on_key, :maxLength, :trim_silence, :play_beep
+        attr_accessor :prompt, :finish_on_key, :max_length, :trim_silence, :play_beep
 
-        def initialize(prompt:, finish_on_key:, maxLength:, trim_silence:, play_beep:)
+        def initialize(prompt:, finish_on_key:, max_length:, trim_silence:, play_beep:)
           @prompt        = prompt
           @finish_on_key = finish_on_key
-          @maxLength     = maxLength
+          @max_length    = max_length
           @trim_silence  = trim_silence
           @play_beep     = play_beep
         end
@@ -132,7 +132,7 @@ module Africas
           {
             prompt: @prompt,
             finish_on_key: @finish_on_key,
-            maxLength: @maxLength,
+            max_length: @max_length,
             trim_silence: @trim_silence,
             play_beep: @play_beep
           }

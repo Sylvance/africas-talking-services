@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ox'
+require "ox"
 
 module Africas
   module Talking
@@ -57,8 +57,6 @@ module Africas
           CreateXML.new(:Reject, "Voice reject", nil)
         end
 
-        private
-
         class CreateXML
           attr_accessor :element, :content, :params
 
@@ -72,9 +70,9 @@ module Africas
             doc = Ox::Document.new
 
             instruct = Ox::Instruct.new(:xml)
-            instruct[:version] = '1.0'
-            instruct[:encoding] = 'UTF-8'
-            instruct[:standalone] = 'yes'
+            instruct[:version] = "1.0"
+            instruct[:encoding] = "UTF-8"
+            instruct[:standalone] = "yes"
 
             doc << instruct
 
@@ -87,8 +85,7 @@ module Africas
             ox_element << content
             doc << ox_element
 
-            xml = Ox.dump(doc)
-            return xml
+            Ox.dump(doc)
           end
         end
       end
