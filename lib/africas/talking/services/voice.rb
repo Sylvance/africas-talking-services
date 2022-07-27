@@ -54,7 +54,7 @@ module Africas
         end
 
         def reject
-          CreateXML.new(:Reject, nil, nil)
+          CreateXML.new(:Reject, "Voice reject", nil)
         end
 
         private

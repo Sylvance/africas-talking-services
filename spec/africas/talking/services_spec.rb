@@ -151,7 +151,7 @@ RSpec.describe Africas::Talking::Services do
 
     context "when doing a voice reject api call" do
       it "can create a voice reject call to AT api" do
-        expect(voice.reject).to eq("Voice reject")
+        expect(voice.reject.content).to eq("Voice reject")
       end
     end
   end
