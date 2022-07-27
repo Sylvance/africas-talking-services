@@ -85,7 +85,7 @@ RSpec.describe Africas::Talking::Services do
       Africas::Talking::Services::VoiceRecordEntity.new(
         prompt: "Please tell us your name after the beep.",
         finish_on_key: "#",
-        maxLength: "10",
+        max_length: "10",
         trim_silence: true,
         play_beep: true
       )
